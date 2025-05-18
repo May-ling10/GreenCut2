@@ -274,6 +274,10 @@
     .swiper-button-prev:hover {
       background-color: rgba(255, 255, 255, 0.9);
     }
+
+    .justificado {
+      text-align: justify;
+    }
   </style>
 </head>
 <body>
@@ -282,7 +286,7 @@
   </header>
 
   <h2>🪄 Modelo Cinemático</h2>
-    <p>
+    <p class="justificado">
         Este modelo describe como se mueve el robot sin considerar las fuerzas involucradas. Es útil para planificar trayectorias y controlar su desplazamiento, porque define 
         la relación entre las velocidades de las orugas y el movimiento del robot, a parte que
         permite saber cómo girar, avanzar en línea recta o moverse en curvas y se usa para
@@ -321,7 +325,7 @@
 
   <div class="container">
     <h2>➡️ Control de velocidad</h2>
-    <p>
+    <p class="justificado">
         Este son dos controles a bajo nivel, uno por cada una de las orugas del carro. 
         Consta de un control PI discreto con un tiempo de estabilización de 0.1 seg para cada motor, con el fin de acatar lo mas rápido posible las señales de control que vienen dados por el control a alto nivel. 
         Este control se ejecuta con un tiempo de muestreo de 2 ms y se programa en la stm teniendo encuentra el control en tiempo real de las variables que se están evaluando con ayuda de los modulos timer que permiten una lectura ideonea del encoder.
@@ -353,7 +357,7 @@
 
     
     <h2>⏏️ Control Cinemático</h2>
-    <p>
+    <p class="justificado">
         Este es un control de alto nivel que actúa sobre la tarea entera del robot de seguir una trayectoria determinada. 
         Funciona estimando las posiciones x, y & su respectiva orientación desde las velocidades medidas desde los enconders de los motores. 
         Sigue una ley de control tal que u = velocidades_deseadas * k1 + error_posicion * k2 donde u son las velocidades en x, y, theta a las que se le calculan cinemática inversa y son las velocidades que son enviadas al robot para que se ejecute.
