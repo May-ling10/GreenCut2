@@ -299,6 +299,7 @@
         diseñar algoritmos de navegación autónoma y evitar obstáculos. Para este modelo se
         utiliza la referencia de robot móvil tipo diferencial.
     </p>
+
     <div class="swiper-container main-slider" id="control-main-slider">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
@@ -391,93 +392,37 @@
     
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    // Inicializar los carruseles cuando la página esté cargada
-    document.addEventListener('DOMContentLoaded', function() {
-      // Carrusel de F.E.A
-      const feaThumbSwiper = new Swiper("#fea-thumb-slider", {
+  document.addEventListener('DOMContentLoaded', function() {
+    // Función auxiliar para inicializar un carrusel con thumbs
+    function inicializarCarrusel(mainId, thumbId) {
+      const thumbSwiper = new Swiper(thumbId, {
         spaceBetween: 10,
         slidesPerView: 4,
         freeMode: true,
         watchSlidesProgress: true,
         loop: true,
       });
-      
-      const feaMainSwiper = new Swiper("#fea-main-slider", {
+
+      const mainSwiper = new Swiper(mainId, {
         spaceBetween: 10,
         navigation: {
-          nextEl: "#fea-main-slider .swiper-button-next",
-          prevEl: "#fea-main-slider .swiper-button-prev",
+          nextEl: `${mainId} .swiper-button-next`,
+          prevEl: `${mainId} .swiper-button-prev`,
         },
         thumbs: {
-          swiper: feaThumbSwiper,
+          swiper: thumbSwiper,
         },
         loop: true,
       });
-      
-      // Carrusel de Construcción
-      const construccionThumbSwiper = new Swiper("#construccion-thumb-slider", {
-        spaceBetween: 10,
-        slidesPerView: 4,
-        freeMode: true,
-        watchSlidesProgress: true,
-        loop: true,
-      });
-      
-      const construccionMainSwiper = new Swiper("#construccion-main-slider", {
-        spaceBetween: 10,
-        navigation: {
-          nextEl: "#construccion-main-slider .swiper-button-next",
-          prevEl: "#construccion-main-slider .swiper-button-prev",
-        },
-        thumbs: {
-          swiper: construccionThumbSwiper,
-        },
-        loop: true,
-      });
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-  // Carrusel de Control
-  const controlThumbSwiper = new Swiper("#control-thumb-slider", {
-    spaceBetween: 10,
-    slidesPerView: 4,
-    freeMode: true,
-    watchSlidesProgress: true,
-    loop: true,
+    }
+
+    // Inicializar cada carrusel
+    inicializarCarrusel("#fea-main-slider", "#fea-thumb-slider");
+    inicializarCarrusel("#construccion-main-slider", "#construccion-thumb-slider");
+    inicializarCarrusel("#control-main-slider", "#control-thumb-slider");
+    inicializarCarrusel("#bajo-main-slider", "#bajo-thumb-slider");
   });
-  
-  const controlMainSwiper = new Swiper("#control-main-slider", {
-    spaceBetween: 10,
-    navigation: {
-      nextEl: "#control-main-slider .swiper-button-next",
-      prevEl: "#control-main-slider .swiper-button-prev",
-    },
-    thumbs: {
-      swiper: controlThumbSwiper,
-    },
-    loop: true,
-  });
-  
-  // Carrusel de Control de bajo nivel
-  const bajoThumbSwiper = new Swiper("#bajo-thumb-slider", {
-    spaceBetween: 10,
-    slidesPerView: 4,
-    freeMode: true,
-    watchSlidesProgress: true,
-    loop: true,
-  });
-  
-  const bajoMainSwiper = new Swiper("#bajo-main-slider", {
-    spaceBetween: 10,
-    navigation: {
-      nextEl: "#bajo-main-slider .swiper-button-next",
-      prevEl: "#bajo-main-slider .swiper-button-prev",
-    },
-    thumbs: {
-      swiper: bajoThumbSwiper,
-    },
-    loop: true,
-  });
-});
-  </script>
+</script>
+
 </body>
 </html>
