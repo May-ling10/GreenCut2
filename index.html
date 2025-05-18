@@ -278,6 +278,12 @@
       background-color: #2f5d20;
     }
 
+    figure img {
+      width: 100%;
+      height: auto;
+    }
+
+
     </style>
 </head>
 <body>
@@ -447,7 +453,7 @@
       <div class="swiper-wrapper">
         <!-- Video -->
         <div class="swiper-slide">
-          <video controls style="width: 60%; height: auto; border-radius: 10px;">
+          <video controls style="width: 100%; height: auto; border-radius: 10px;">
             <source src="images/estesi.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
@@ -457,17 +463,17 @@
           <img src="images/mask.jpg" alt="mascara">
         </div>
         <div class="swiper-slide">
-          <img src="images/convo.jpg" alt="mascara">
+          <img src="images/convo.jpg" alt="convo">
         </div>
         <div class="swiper-slide">
-          <video controls style="width: 60%; height: auto; border-radius: 10px;">
+          <video controls style="width: 47%; height: auto; border-radius: 10px;">
             <source src="images/si.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
         </div>
         <div class="swiper-slide">
-          <video controls style="width: 60%; height: auto; border-radius: 10px;">
-            <source src="images/no" type="video/mp4">
+          <video controls style="width: 47%; height: auto; border-radius: 10px;">
+            <source src="images/no.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
         </div>
@@ -585,7 +591,7 @@
   // Inicializar los sliders para la sección de IA
   const iaThumbSwiper = new Swiper("#ia-thumb-slider", {
     spaceBetween: 10,
-    slidesPerView: 4,
+    slidesPerView: 5,
     watchSlidesProgress: true,
   });
 
