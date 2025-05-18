@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GREENCUT - Innovación Ecológica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom right, #d0eed2, #fff8eb);
+      color: #3a7129;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: #3a7129;
+      color: #f9f7f3;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header img {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #f9f7f3;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 8px 16px rgba(0, 128, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .cta a, .design-link {
+      background-color: #3a7129;
+      color: #f9f7f3;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      font-weight: bold;
+      border-radius: 2rem;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .cta a:hover, .design-link:hover {
+      background-color: #2f5d20;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      section {
+        padding: 2rem 1rem;
+      }
+      .card {
+        padding: 1.5rem;
+      }
+      .cta a {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .column h3 {
+      color: #3a7129;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .compare-card {
+      background: #f9f7f3;
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 128, 0, 0.1);
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .compare-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .team-section {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .team-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .team-member {
+      text-align: center;
+      max-width: 180px;
+    }
+
+    .team-member img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #3a7129;
+    }
+
+    .team-member h3 {
+      background-color: #3a7129;
+      color: #f3f4f9;
+      padding: 0.5rem;
+      margin: 0.5rem 0 0;
+      font-size: 1.1rem;
+    }
+
+    .team-member p {
+      margin: 0;
+      font-size: 1rem;
+      color: #3a7129;
+    }
+    section, .container {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.2s;
+      }
+
+      @keyframes fadeInUp {
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      }
+      
+    .gallery {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: auto;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Modal */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+    .swiper-container {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .main-slider {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .main-slider .swiper-slide img,
+    .main-slider .swiper-slide video {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .thumb-slider {
+      height: 100px;
+      box-sizing: border-box;
+      padding: 10px 0;
+    }
+
+    .thumb-slider .swiper-slide {
+      width: 100px;
+      height: 100px;
+      opacity: 0.4;
+      cursor: pointer;
+    }
+
+    .thumb-slider .swiper-slide-thumb-active {
+      opacity: 1;
+    }
+
+    .thumb-slider .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #3a7129;
+    }
+
+    /* Botón reproducir todos */
+    .play-all-btn {
+      background-color: #3a7129;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+    }
+    
+    .play-all-btn:hover {
+      background-color: #2f5d20;
+    }
+
+    </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="GREENCUT Logo">
+    <h1>GREENCUT</h1>
+    <p>Innovación en el mantenimiento ecológico</p>
+  </header>
+
+  <section>
+    <h2>¿Quiénes somos?</h2>
+    <p>Somos un equipo de estudiantes universitarios apasionados por la innovación y la tecnología con la iniciativa de ofrecer una solución práctica para el corte de césped que crece entre los ladrillos por medio de la ingeniería, la robótica y la sostenibilidad.</p>
+  </section>
+
+  <section class="team-section">
+    <h2>EQUIPO DIRECTIVO</h2>
+    <div class="team-container">
+      <div class="team-member"><img src="images/verano.jpg" alt="Juan Verano"><h3>Juan Verano</h3><p>Electrónica</p></div>
+      <div class="team-member"><img src="images/crespo.jpg" alt="Santiago Crespo"><h3>Santiago Crespo</h3><p>Control</p></div>
+      <div class="team-member"><img src="images/may.jpg" alt="May-ling Moreno"><h3>May-ling Moreno</h3><p>Control</p></div>
+      <div class="team-member"><img src="images/jisel.jpg" alt="Jisel Rodriguez"><h3>Jisel Rodriguez</h3><p>Mecánica</p></div>
+      <div class="team-member"><img src="images/laura.jpg" alt="Laura Pareja"><h3>Laura Pareja</h3><p>Comunicaciones</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 style="text-align:center;">Problema vs Solución</h2>
+    <div class="comparison-grid">
+      <div class="column">
+        <h3><i class="fas fa-exclamation-circle"></i> Problemas</h3>
+        <div class="compare-card">🌱 Crecimiento de césped entre los ladrillos.</div>
+        <div class="compare-card">🧱 Deterioro de estructuras por raíces invasivas.</div>
+        <div class="compare-card">💸 Mantenimiento manual lento y perjudicial para la salud a largo plazo.</div>
+        <div class="compare-card">🫗 Métodos tradicionales contaminantes y desperdicios de agua.</div>
+      </div>
+      <div class="column">
+        <h3><i class="fas fa-robot"></i> GreenCut propone</h3>
+        <div class="compare-card">📍 Localización por medio de GPS y seguridad con sensórica.</div>
+        <div class="compare-card">☢️ No usa pesticidas, químicos ni genera gastos de agua.</div>
+        <div class="compare-card">🤖 Autonomía total desde el inicio del recorrido hasta la zona de corte.</div>
+        <div class="compare-card">🛜 Conectividad directamente a la nube.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUEVA SECCIÓN: Proceso de diseño -->
+  <section>
+    <h2>Proceso de diseño</h2>
+    <p>Descubre cómo surgió la idea de GreenCut, las etapas clave en su desarrollo y los retos técnicos que enfrentamos para llegar a una solución sostenible y funcional.</p>
+    <a class="design-link" href="proceso_de_diseño.html">Ver más detalles</a>
+  </section>
+
+  <section id="prototipo-final">
+    <h2>Prototipo Final</h2>
+    <p>
+      A partir de todo el proceso de diseño se contruyó el boceto final de GreenCut y se realizó el CAD en SolidWorks.
+    </p>
+    <div class="swiper-container main-slider" id="prototipo-main-slider">
+      <div class="swiper-wrapper">
+        <!-- Video -->
+        <div class="swiper-slide">
+          <video controls style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="images/1.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+        <!-- Imágenes -->
+        <div class="swiper-slide">
+          <img src="images/ensamble.png" alt="Ensamble en SolidWorks">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/vista_lateral.png" alt="Vista lateral">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/vista_inferior.png" alt="Vista inferior">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/vista_superior.png" alt="Vista superior">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/orugas.png" alt="Orugas">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/motor.png" alt="Motor">
+        </div>
+      </div>
+      <!-- Flechas -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- Miniaturas -->
+    <div class="swiper-container thumb-slider" id="prototipo-thumb-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/ensamble.png" alt="Mini video">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/ensamble.png" alt="Mini Ensamble">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/vista_lateral.png" alt="Mini lateral">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/vista_inferior.png" alt="Mini inferior">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/vista_superior.png" alt="Mini superior">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/orugas.png" alt="Mini orugas">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/motor.png" alt="Mini motor">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>⚙ Mecánica</h2>
+    <p> 
+      Averigua como se realizó toda la parte mecánica de GreenCut, la elección de componentes, el análisis por elementos finitos y la construcción física.
+    </p>
+    <a class="design-link" href="mecanica.html">Ver más detalles</a>
+  </section>
+
+  <section>
+    <h2>🔌 Electrónica</h2>
+    <p> 
+      Averigua como se realizó toda la parte electrónica de GreenCut, el diseño de PCBs y nuestros planos eléctricos.
+    </p>
+    <a class="design-link" href="electronica.html">Ver más detalles</a>
+  </section>
+
+  <section>
+    <h2>🎮 Control</h2>
+    <p> 
+      Averigua como se realizó el control de GreenCut.
+    </p>
+    <a class="design-link" href="control.html">Ver más detalles</a>
+  </section>
+  
+  <section>
+    <h2>Interfaz</h2>
+    <p>
+      En esta interfaz podrás ver el control manual de GreenCut por medio de una aplicación desarrollada en pyhton y se grafica en el espacio.
+    </p>
+    <video controls style="width: 50%; height: auto; border-radius: 10px;">
+        <source src="images/1.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+    </video>
+    <h2>Trayectoria</h2>
+     <figure>
+         <img src="images/trayecto.png" alt="Trayecto">
+        <figcaption>Trayectoria global</figcaption>
+    </figure>
+  </section>
+
+  <section id="ia-section">
+    <h2>IA</h2>
+    <p>
+      Se utilizó una red convolucional para identificar por medio de la cámara si se evidencia césped en tiempo real, luego de esto se realiza una segmentación por gama de colores para identificar las zonas por donde se debe ubicar la herramienta.
+    </p>
+    
+    <div class="swiper-container main-slider" id="ia-main-slider">
+      <div class="swiper-wrapper">
+        <!-- Video -->
+        <div class="swiper-slide">
+          <video controls style="width: 60%; height: auto; border-radius: 10px;">
+            <source src="images/estesi.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+        <!-- Imágenes -->
+        <div class="swiper-slide">
+          <img src="images/mask.jpg" alt="mascara">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/convo.jpg" alt="mascara">
+        </div>
+        <div class="swiper-slide">
+          <video controls style="width: 60%; height: auto; border-radius: 10px;">
+            <source src="images/si.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+        <div class="swiper-slide">
+          <video controls style="width: 60%; height: auto; border-radius: 10px;">
+            <source src="images/no" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+      </div>
+      <!-- Flechas -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- Miniaturas -->
+    <div class="swiper-container thumb-slider" id="ia-thumb-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/estesi.jpg" alt="Mini video detectado">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/mask.jpg" alt="Mini mascara">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/convo.jpg" alt="mascara">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/si.jpg" alt="Mini video si">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/no.jpg" alt="Mini video no">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Pruebas</h2>
+    <p>
+      Acá puedes ver el recorrido de GreenCut desde el inicio del recorrido hasta la zona de corte.
+    </p>
+    <div style="display: flex; gap: 10px;">
+      <video id="video1" style="width: 30%; border-radius: 10px;" muted>
+        <source src="images/pruebas1.mov" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+      </video>
+
+      <video id="video2" style="width: 30%; border-radius: 10px;" muted>
+        <source src="images/pruebas2.mov" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+      </video>
+
+      <video id="video3" style="width: 30%; border-radius: 10px;" muted>
+        <source src="images/pruebas3.mov" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </div>
+
+    <!-- Botón para iniciar todos los videos a la vez -->
+    <button onclick="reproducirTodos()" class="play-all-btn">
+      Reproducir todos
+    </button>
+  </section>
+
+  <section>
+    <h2>📚 Mongrafía</h2>
+    <p> 
+      Descarga nuestra monografía donde se encuentra la información más a detalle y todas nuestras revisiones documentales.
+    </p>
+    <a href="monografia" target="_blank" class="design-link">
+      Descargar Monografía
+    </a>
+  </section>
+
+  <section>
+    <h2>Objetivos y Tareas</h2>
+    <div class="cards">
+      <div class="card">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h3>Problema</h3>
+        <p>Remoción manual ineficiente y costosa de maleza en espacios públicos.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-bullseye"></i>
+        <h3>Objetivos</h3>
+        <p>Desarrollar un robot autónomo que identifique y elimine maleza con precisión.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-tasks"></i>
+        <h3>Tareas</h3>
+        <p>Diseño CAD, simulaciones FEA, programación embebida y control remoto.</p>
+      </div>
+    </div>
+  </section>
+  
+  <div id="modal" onclick="this.style.display='none'">
+    <img id="modal-img" src="" alt="Imagen ampliada">
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // Inicializar los sliders para la sección de prototipo
+  const prototipoThumbSwiper = new Swiper("#prototipo-thumb-slider", {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    watchSlidesProgress: true,
+  });
+
+  const prototipoMainSwiper = new Swiper("#prototipo-main-slider", {
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    thumbs: {
+      swiper: prototipoThumbSwiper,
+    },
+  });
+  
+  // Inicializar los sliders para la sección de IA
+  const iaThumbSwiper = new Swiper("#ia-thumb-slider", {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    watchSlidesProgress: true,
+  });
+
+  const iaMainSwiper = new Swiper("#ia-main-slider", {
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    thumbs: {
+      swiper: iaThumbSwiper,
+    },
+  });
+  
+  // Función para abrir modal de imágenes
+  function openModal(img) {
+    document.getElementById("modal-img").src = img.src;
+    document.getElementById("modal").style.display = "flex";
+  }
+  
+  // Función para reproducir todos los videos
+  function reproducirTodos() {
+    document.getElementById('video1').play();
+    document.getElementById('video2').play();
+    document.getElementById('video3').play();
+  }
+  
+  // Establecer velocidad del video si es necesario
+  const videos = document.querySelectorAll('video');
+  videos.forEach(video => {
+    // Puedes establecer la velocidad si lo deseas
+    // video.playbackRate = 1.5;
+  });
+</script>
+
+</body>
+</html>
