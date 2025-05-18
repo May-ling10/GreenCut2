@@ -354,8 +354,8 @@
       <div class="swiper-wrapper">
         <!-- Video -->
         <div class="swiper-slide">
-          <video controls style="width: 100%; height: auto; border-radius: 10px;">
-            <source src="images/1.mp4" type="video/mp4">
+          <video controls style="width: 80%; height: auto; border-radius: 10px;">
+            <source src="images/explosionado.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
         </div>
@@ -388,7 +388,7 @@
     <div class="swiper-container thumb-slider" id="prototipo-thumb-slider">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="images/ensamble.png" alt="Mini video">
+          <img src="images/explosionado.png" alt="Mini explosionado">
         </div>
         <div class="swiper-slide">
           <img src="images/ensamble.png" alt="Mini Ensamble">
@@ -579,11 +579,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  // Inicializar los sliders para la sección de prototipo
   const prototipoThumbSwiper = new Swiper("#prototipo-thumb-slider", {
     spaceBetween: 10,
     slidesPerView: 4,
     watchSlidesProgress: true,
+    loop: true, // 👈 Esto habilita el ciclo infinito
   });
 
   const prototipoMainSwiper = new Swiper("#prototipo-main-slider", {
@@ -595,13 +595,14 @@
     thumbs: {
       swiper: prototipoThumbSwiper,
     },
+    loop: true, // 👈 También aquí
   });
-  
-  // Inicializar los sliders para la sección de IA
+
   const iaThumbSwiper = new Swiper("#ia-thumb-slider", {
     spaceBetween: 10,
     slidesPerView: 5,
     watchSlidesProgress: true,
+    loop: true, // 👈 aquí también
   });
 
   const iaMainSwiper = new Swiper("#ia-main-slider", {
@@ -613,7 +614,9 @@
     thumbs: {
       swiper: iaThumbSwiper,
     },
+    loop: true, // 👈 y aquí
   });
+
   
   // Función para abrir modal de imágenes
   function openModal(img) {
