@@ -325,16 +325,17 @@
     <p class="justificado">
         
     </p>
+        <!-- Carrusel principal -->
     <div class="swiper-container main-slider" id="construccion-main-slider">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <video controls style="width: 100%; height: auto; border-radius: 10px;">
+          <video controls>
             <source src="images/sensores.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
         </div>
         <div class="swiper-slide">
-          <video controls style="width: 100%; height: auto; border-radius: 10px;">
+          <video controls>
             <source src="images/ultrasonido.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
@@ -344,18 +345,18 @@
       <div class="swiper-button-prev"></div>
     </div>
 
+    <!-- Miniaturas -->
     <div class="swiper-container thumb-slider" id="construccion-thumb-slider">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-           <img src="images/sensores.mp4" alt="Mini sensores">
+          <img src="images/sensores.png" alt="Mini sensores">
         </div>
         <div class="swiper-slide">
-          <img src="images/ultrasonido.png" alt="ultra">
+          <img src="images/ultrasonido.png" alt="Mini ultra">
         </div>
       </div>
     </div>
 
-    
 
   <button onclick="window.history.back()" style="
     background-color: #3a7129;
@@ -371,27 +372,32 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    // Inicializar los carruseles cuando la página esté cargada
-    document.addEventListener('DOMContentLoaded', function() {
-      // Carrusel de F.E.A
-      const feaThumbSwiper = new Swiper("#fea-thumb-slider", {
+  document.addEventListener('DOMContentLoaded', function() {
+    function initCarousel(mainId, thumbId) {
+      const thumbSwiper = new Swiper(thumbId, {
         spaceBetween: 10,
         slidesPerView: 4,
         freeMode: true,
         watchSlidesProgress: true,
       });
-      
-      const feaMainSwiper = new Swiper("#fea-main-slider", {
+
+      const mainSwiper = new Swiper(mainId, {
         spaceBetween: 10,
         navigation: {
-          nextEl: "#fea-main-slider .swiper-button-next",
-          prevEl: "#fea-main-slider .swiper-button-prev",
+          nextEl: `${mainId} .swiper-button-next`,
+          prevEl: `${mainId} .swiper-button-prev`,
         },
         thumbs: {
-          swiper: feaThumbSwiper,
+          swiper: thumbSwiper,
         },
       });
-      });
+    }
+
+    // Inicializar carruseles
+    initCarousel("#fea-main-slider", "#fea-thumb-slider");
+    initCarousel("#construccion-main-slider", "#construccion-thumb-slider");
+  });
   </script>
+ 
 </body>
 </html>
