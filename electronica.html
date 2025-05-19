@@ -212,6 +212,76 @@
     .justificadoo {
       text-align: justify;
     }
+
+    /* Estilos mejorados para el carrusel */
+    .swiper-container {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .main-slider {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .main-slider .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px; /* Altura fija para todas las diapositivas */
+    }
+
+    .main-slider .swiper-slide img,
+    .main-slider .swiper-slide video {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .thumb-slider {
+      height: 100px;
+      box-sizing: border-box;
+      padding: 10px 0;
+    }
+
+    .thumb-slider .swiper-slide {
+      width: 100px;
+      height: 80px;
+      opacity: 0.4;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .thumb-slider .swiper-slide-thumb-active {
+      opacity: 1;
+      border: 2px solid #3a7129;
+    }
+
+    .thumb-slider .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    
+    /* Botones de navegación del carrusel */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #3a7129;
+      background-color: rgba(255, 255, 255, 0.7);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      --swiper-navigation-size: 24px;
+    }
+    
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+   
     
   </style>
 </head>
@@ -220,35 +290,70 @@
     <h1> Diseño electrónico - GreenCut</h1>
   </header>
 
+  <p clase="justificado">
+      Se utilizó principalmente una batería de 12 y 7Ah, tres reguladores, uno utilizado para alimentar los sensores, otro para alimentar el puente H que controla la velocidad de los motores así como también el motor que acciona la herramienta y otro el cual tiene salida USB para alimentar la RPi y la STM.
+      Para accionar el motor de la herramienta se utilizó un transistor el cual me permite encender el motor de 12v con la STM. También GreeenCut posee una comunicación serial entre la STM y la RPI para el envío y recepción de las velocidades de los motores, estos datos se envían con una trama personalizada.
+    </p>
   <div class="container">
-    <h2> Diseño de PCB</h2>
-    <p class="justificado">
-        ...............
-    </p>
-    <figure>
-         <img src="images/planos_electricos.png" alt="Planos eléctricos">
-        <figcaption>Planos eléctricos</figcaption>
-    </figure>
-  
-
     <h2>📁 Planos eléctricos</h2>
-    <p class="justificado">
-        ...................
-    </p>
+    <div class="pdf-gallery">
+      <div class="pdf-card">
+        <a href="images/planos_electricos.pdf" target="_blank">
+          <img src="images/planos_electricos.png" alt="Pcb 1">
+          PCB 1
+        </a>
+      </div>
+    </div>
 
-     <figure>
-         <img src="images/planos_electricos.png" alt="Planos eléctricos">
-        <figcaption>Planos eléctricos</figcaption>
-    </figure>
+    <h2> Diseño de PCBs</h2>
+    <div class="pdf-gallery">
+      <div class="pdf-card">
+        <a href="images/pcb1.PDF" target="_blank">
+          <img src="images/pcb1.png" alt="Pcb 1">
+          PCB 1
+        </a>
+      </div>  
+      <div class="pdf-card">
+        <a href="images/pcb2.PDF" target="_blank">
+          <img src="images/pcb2.png" alt="Pcb 2">
+          PCB 2
+        </a>
+      </div>
+    </div>
 
     <h2>📁 Adecuación de sensórica</h2>
     <p class="justificado">
-        ...................
+        
     </p>
-    <video controls style="width: 40%; height: auto; border-radius: 10px;">
-      <source src="images/sensores.mp4" type="video/mp4">
-      Tu navegador no soporta la reproducción de video.
-    </video>
+    <div class="swiper-container main-slider" id="construccion-main-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <video controls style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="images/sensores.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+        <div class="swiper-slide">
+          <video controls style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="images/ultrasonido.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <div class="swiper-container thumb-slider" id="construccion-thumb-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+           <img src="images/sensores.mp4" alt="Mini sensores">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/ultrasonido.png" alt="ultra">
+        </div>
+      </div>
+    </div>
 
     
 
@@ -264,5 +369,29 @@
   ⬅ Volver
   </button>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // Inicializar los carruseles cuando la página esté cargada
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carrusel de F.E.A
+      const feaThumbSwiper = new Swiper("#fea-thumb-slider", {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+      });
+      
+      const feaMainSwiper = new Swiper("#fea-main-slider", {
+        spaceBetween: 10,
+        navigation: {
+          nextEl: "#fea-main-slider .swiper-button-next",
+          prevEl: "#fea-main-slider .swiper-button-prev",
+        },
+        thumbs: {
+          swiper: feaThumbSwiper,
+        },
+      });
+      });
+  </script>
 </body>
 </html>
